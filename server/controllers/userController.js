@@ -6,6 +6,7 @@ const getUsers=async(req,res)=>{
     const users=await userService.getUsers
     res.json(users)
 }
+
 const getUserById=async (req,res)=>{
     const {_id}=req.params
     if(!mongoose.Types.ObjectId.isValid(_id))
