@@ -3,25 +3,25 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
 name: 'user',
 initialState: {
-user: null,  // פרטי המשתמש
-isAuthenticated: false,  // אם המשתמש מחובר
-status: 'idle',  // סטטוס טעינה
-error: null,  // שגיאות
+token:localStorage.getItem("token") ||" " ,// פרטי המשתמש
+isUserLiggedIn: localStorage.getItem("token")?true:false,  // אם המשתמש מחובר
+userName: "",  // שם המשתמש
   },
   reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;  // עדכון פרטי המשתמש
-      state.isAuthenticated = true;
-    },
-    logOut: (state) => {
-      state.user = null;  // לוג אאוט
-      state.isAuthenticated = false;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;  // עדכון שגיאה
-    },
+ setToken(state, action) { 
+  const token = action.payload.token;
+  console.log("tokenn:"+token); // הדפסת ה־token לקונסול
+  state.token = token; // עדכון ה־token במצב
+  state.isUserLiggedIn = true; // עדכון ה־isUserLoggedIn למצב מחובר
+ localStorage.setItem('token', token); // שמירה ב־localStorage
+},
+removeToken(state)
+{state.token = ""; // איפוס ה־token
+  state.isUserLiggedIn = false; // עדכון ה־isUserLoggedIn למצב לא מחובר
+localStorage.removeItem('token'); // הסרה מ־localStorage
   },
+}
 });
 
-export const { setUser, logOut, setError } = userSlice.actions;
+export const { setToken, removeToken } = userSlice.actions;//
 export default userSlice.reducer;

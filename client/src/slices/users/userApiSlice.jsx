@@ -1,25 +1,23 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import apiSlice from '../api/apiSlice';
 
-export const userApiSlice = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
+export const userApiSlice = apiSlice.injectEndpoints({ 
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => 'users', // קריאת משתמשים
+      query: () => 'user', // קריאת משתמשים
     }),
     getUserById: builder.query({
-      query: (_id) => `users/${_id}`, // קריאת משתמש לפי ID
+      query: (_id) => `user/${_id}`, // קריאת משתמש לפי ID
     }),
     addUser:builder.mutation({
       query:(newUser)=>({
-        url:'users',
+        url:'user',
        method:'POST',
        body:newUser
      })}),
 updateUser:builder.mutation({
 query:(updateUser)=>({
-  url:'users',
+  url:'user',
   method:'PUT',
   body:updateUser
 })
@@ -44,9 +42,11 @@ register:builder.mutation({
     method:'POST',
     body:user
   })
-}),
-  }),
-}); 
+})
+})
+})
+
+
 export const {
   useGetUsersQuery,
   useGetUserByIdQuery,

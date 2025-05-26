@@ -6,20 +6,23 @@ const getStores=async()=>{
 const getStoreById=async(_id)=>{
     return await storeAccess.getStoreById(_id)
 }
-const getListStoreByTotalPrice = (cityId, products) => {
-    const stores = storeAccess.getStoreByCity(cityId)
-    const productsId=products.map((product)=>{
+const getListStoreByTotalPrice = (cityId, items) => {
+    const stores = storeAccess.getStoreByCity(cityId)//חיפוש העיר
+    const productsId=items.product.map((product)=>{
         return product._id
-    })
+    })//מציר את הid של המוצרים
     const amount = stores.map(async (storeName) => {
         const prices=priceAccess.getPricesByBarcodes(productsId,storeName)
-        const total = prices.reduce((accumulator, price) => accumulator + price.amount, 0)
+const nprices=prices.map((price) => {
+            return price*items[index].quantity
+        })
+        const total = nprices.reduce((accumulator, price) => accumulator + price, 0)
         const totalStore = { total, storeName }
         return totalStore
     }
     )
-    amount.sort((a, b) => { a.total - b.total })
-    return amount
+   const result= amount.sort((a, b) =>  a.total - b.total )
+    return result
 }
 const addStore=async(dataStore)=>{
    return await storeAccess.addStore(dataStore)

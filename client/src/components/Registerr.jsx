@@ -74,7 +74,7 @@ const [register, { isLoading }] = useRegisterMutation();
                     <i className="pi pi-check-circle" style={{ fontSize: '5rem', color: 'var(--green-500)' }}></i>
                     <h5>Registration Successful!</h5>
                     <p style={{ lineHeight: 1.5, textIndent: '1rem' }}>
-                        Your account is registered under name <b>{formData.name}</b> ; it'll be valid next 30 days without activation. Please check <b>{formData.email}</b> for activation instructions.
+                       Hi <b>{formData.name}</b>; You have successfully registered!
                     </p>
                 </div>
             </Dialog>

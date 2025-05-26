@@ -13,7 +13,7 @@ const getProductById=async (_id)=>{
      return newProduct
  }
  const updateProduct=async(dP)=>{
-    let product=await ProductSchema.findById(_id)
+    let product=await ProductSchema.findById(dp._id)
     if(!product)
         return undefined
     product.name=dPname

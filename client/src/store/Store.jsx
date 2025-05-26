@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../slices/users/userSlice';
-import { userApiSlice } from '../slices/users/userApiSlice';
+import userReducer from '../slices/users/userSlice'; // ייבוא הרדוסר של המשתמש
+import apiSlice from '../slices/api/apiSlice';
 //users: userReducer,
      
  const store = configureStore({
@@ -9,15 +9,12 @@ import { userApiSlice } from '../slices/users/userApiSlice';
     // 
   
       // reducers של RTK Query (API)
-      [userApiSlice.reducerPath]: userApiSlice.reducer,
-     
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    user:userReducer
     },
     middleware: (getDefaultMiddleware) =>//זו פונקציה ש־Redux Toolkit מספק, והיא מחזירה לך מערך של middlewareים ברירת מחדל מוכנים.
       getDefaultMiddleware()//
-        .concat(userApiSlice.middleware)//פה את מוסיפה את ה־middleware של RTK Query, שזה החלק שמנהל:
-
-       
-       
+.concat(apiSlice.middleware), // הוספת ה־middleware של RTK Query
        
   });
   export default store;

@@ -3,12 +3,12 @@ const getPricesByBarcodes=async(barcodes,storeName)=>{
     return await priceAccess.getPricesByBarcodes() 
 }
 const getPrices=async()=>{
-    return await priceAccess.getprices()
+    return await priceAccess.getPrices()
 }
 const getPriceById=async (_id)=>{
      return await priceAccess.findById(_id)
 }
-const addPrice=async (dataPrice)=>{
+const addPrice=async (dataprice)=>{
    return await priceAccess.addPrice(dataprice)
 }
 const updatePrice=async(dataPrice)=>{
