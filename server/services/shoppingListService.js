@@ -2,7 +2,7 @@ const shoppingListAccess = require('../dataAcces/shoppingListAccess');
 const getShoppingList = async (req) => {
     return await shoppingListAccess.getShopingList(req);
 };
-const getShoppingListById = async (_id,req) => {
+const getShoppingListById = async (_id) => {
     return await shoppingListAccess.getShoppingListById(_id);
 };
 const addShoppingList = async (dataShoppingList) => {

@@ -8,10 +8,10 @@ const login = async (req,res)=>{
     const result=await userValidator.loginValidator({userName,password})
     if(result.status!=200)
         return res.status(result.status).json(result.message)
-    const match = await bcrypt.compare(password, result.foundUser.password)
-    if(!match)return res.status(401).json({message:'Unauthorized' })
+   // const match = await bcrypt.compare(password, result.foundUser.password)
+   // if(!match)return res.status(401).json({message:'Unauthorized' })
         const userInfo={_id:result.foundUser._id,name:result.foundUser.name,
-    Permission:result.foundUser.permission,userName:result.foundUser.userName,email:result.foundUser.email}
+    permission:result.foundUser.permission,userName:result.foundUser.userName,email:result.foundUser.email}
     const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
     res.json({accessToken:accessToken})
      

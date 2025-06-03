@@ -4,7 +4,7 @@ const productController=require("../controllers/productController")
 const express=require("express")
 const router=express.Router()
 router.use(verifyJWT)
-router.get("/",isAdmin,productController.getProducts)//admin
+router.get("/",productController.getProducts)//admin
 router.get("/:_id",isAdmin,productController.getProductById)//admin
 router.get("/getByName",productController.getProductByName)//user
 router.post("/",isAdmin,productController.addProduct)//admin

@@ -47,8 +47,13 @@ const deleteStore=async (req,res)=>{
     res.json(deletedStore)
 }
 const getListStoreByTotalPrice = async (req, res) => {
-    const { cityId, products } = req.body
-    const amount= storeService.getListStoreByTotalPrice(cityId, products)
+   console.log("getListStoreByTotalPrice")
+    const cityId = req.query.cityId;
+    const products = JSON.parse(req.query.products);
+    console.log("cityId", cityId)
+    console.log("products", products)
+    const amount=await storeService.getListStoreByTotalPrice(cityId, products)
+    console.log("amount", amount)
     res.json(amount)
 }
 

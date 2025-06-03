@@ -4,9 +4,10 @@ const getShopingList=  async (req) => {
     const shoppingList = await shoppingListSchema.find({userId}).populate('productInList.product').lean();
     return shoppingList;
 }
-const getShoppingListById=async (_id,req)=>{
-    const shoppingList=await shoppingListSchema.findOne({_id,user:req.user._id}).lean()
-    return shoppingList
+const getShoppingListById=async (_id)=>{
+     const shoppingList=await shoppingListSchema.findById(_id).lean()
+     return shoppingList
+  
 }
 const addShoppingList=async (dataShoppingList)=>{
     const newShoppingList=await shoppingListSchema.create({userId:dataShoppingList.userId,nameList:dataShoppingList.nameList,productInList:dataShoppingList.productInList})

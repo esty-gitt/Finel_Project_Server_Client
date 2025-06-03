@@ -63,7 +63,7 @@ const [loginn, { isLoading ,isError,eror,isSuccess,data}] = useLoginMutation();
             dispatch(setToken({token:tt})); // עדכון ה־token במצב
             setShowMessage(true);
             reset();
-            navigate('/layout');} // נווט לדף הבית או דף אחר}
+            navigate('/home');} // נווט לדף הבית או דף אחר}
          }
     },[isSuccess])
     const getFormErrorMessage = (name) => {
@@ -87,7 +87,7 @@ const [loginn, { isLoading ,isError,eror,isSuccess,data}] = useLoginMutation();
 
     return (
         <div className="form-demo">
-          <alert >{isError&&<Message text="Incorrect data" />}</alert>
+          {isError && <Message text="Incorrect data" severity="error" />}
             <Dialog  visible={showMessage} onHide={() => setShowMessage(false)} position="top" footer={dialogFooter} showHeader={false} breakpoints={{ '960px': '80vw' }} style={{ width: '30vw' }}>
                 <div className="flex justify-content-center flex-column pt-6 px-3">
                     <i className="pi pi-check-circle" style={{ fontSize: '5rem', color: 'var(--green-500)' }}></i>

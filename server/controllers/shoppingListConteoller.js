@@ -23,10 +23,11 @@ const addShoppingList = async (req, res) => {
 
   }
   const updateShoppingList = async (req, res) => {
+    console.log(req.body);
     const { _id, nameList, productInList } = req.body
     if(!mongoose.Types.ObjectId.isValid(_id))
         return res.status(400).send("type error")
-    const shoppingList = await shoppingListService.getShoppingListById(_id).lean()
+    const shoppingList = await shoppingListService.getShoppingListById(_id)
     if (!shoppingList)
         return res.status(404).send("the shopping list not found")
     const result = await shoppingListValidator({ _id, nameList, productInList })

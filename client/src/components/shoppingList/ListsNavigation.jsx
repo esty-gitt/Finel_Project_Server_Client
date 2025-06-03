@@ -11,12 +11,36 @@ const ListsNavigation = () => {
     const [visible, setVisible] = useState(true);
 const { data: lists= [], isLoading, isError }= useGetShoppingListQuery();
   
+const items = [
+    {
+        label: 'Documents',
+        items: [
+            {
+                label: 'New',
+                icon: 'pi pi-plus',
+                command:()=>{
+                    alert("new")
+                }
+            },
+            {
+                label: 'Search',
+                icon: 'pi pi-search',
+                 command:()=>{
+                    alert("new")
+                }
+            }
+        ]
+    },
+    {
+        label: 'My Lists',
+        items:lists.map(order => ({
+            label: order.nameList,
+            command: () => navigate(`/shoppinglist`, {state:{id:order._id}}) 
+        }))
+    }
+];
+
     
-    
-            const items = lists.map(order => ({
-                label: order.nameList,
-                command: () => navigate(`shoppinglist/${order._id}`) 
-            }));
         
     
 

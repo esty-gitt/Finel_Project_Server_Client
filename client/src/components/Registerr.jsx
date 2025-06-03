@@ -68,6 +68,12 @@ const [register, { isLoading }] = useRegisterMutation();
     );
 
     return (
+        <>
+              <video autoPlay loop muted className="background-video">
+              <source src="/video/super.mp4" type="video/mp4" />
+      
+      </video>
+
         <div className="form-demo">
             <Dialog visible={showMessage} onHide={() => setShowMessage(false)} position="top" footer={dialogFooter} showHeader={false} breakpoints={{ '960px': '80vw' }} style={{ width: '30vw' }}>
                 <div className="flex justify-content-center flex-column pt-6 px-3">
@@ -135,6 +141,6 @@ const [register, { isLoading }] = useRegisterMutation();
                     </form>
                 </div>
             </div>
-        </div>
+        </div></>
     );}
 export default Register;

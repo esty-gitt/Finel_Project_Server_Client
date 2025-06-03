@@ -2,7 +2,7 @@ const UserSchema=require("../models/userModel")
 
 const getUsers=async()=>{
     const users=await UserSchema.find().lean()
-   return user
+   return users
 }
 const getUserById=async (_id)=>{
   
@@ -31,7 +31,8 @@ const updateUser=async(data)=>{
 }
 const deleteUser=async (_id)=>{
   
-    const user=await getUserById(_id)
+    const user=await UserSchema.findById(_id)
+    console.log(user)
     if(!user)
     return undefined
     const deletedUser= await user.deleteOne()

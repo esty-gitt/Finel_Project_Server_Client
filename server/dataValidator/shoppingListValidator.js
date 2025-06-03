@@ -3,7 +3,7 @@ const userSchema= require('../models/userModel');
 const productSchema= require('../models/productModel');
 const mongoose = require('mongoose');
 const shoppingListValidator = async (data) => {
-    if (!data.nameList||!data.productInList||!data.userId)//בדיקת אם יש נתונים
+    if (!data.nameList||!data.productInList)//בדיקת אם יש נתונים
         return { status: 400, message: "nameList is required" }
     if (data.nameList.trim() === "")
         return { status: 400, message: "nameList is required"} 
@@ -11,9 +11,9 @@ const shoppingListValidator = async (data) => {
         return { status: 400, message: "userId is not valid"}
      if(data.productInList.length===0)
         return { status: 400, message: "productInList is required" }
-    const user=await userSchema.findById(data.userId).lean()
-    if(user==null)//בדיקת אם יש משתמש עם הid הזה
-        return { status: 404, message: "user not found" }
+    // const user=await userSchema.findById(data.userId).lean()
+    // if(user==null)//בדיקת אם יש משתמש עם הid הזה
+    //     return { status: 404, message: "user not found" }
     
         const isValidProduct = data.productInList.every((item) =>
             item.product && mongoose.Types.ObjectId.isValid(item.product)
